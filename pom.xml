@@ -15,6 +15,20 @@
             <artifactId>opencsv</artifactId>
             <version>5.0</version>
         </dependency>
+
+        <dependency>
+            <groupId>ch.netzwerg</groupId>
+            <artifactId>paleo-core</artifactId>
+            <version>0.14.0</version>
+            <type>pom</type>
+        </dependency>
+
+        <dependency>
+            <groupId>ch.netzwerg</groupId>
+            <artifactId>paleo-io</artifactId>
+            <version>0.14.0</version>
+            <type>jar</type>
+        </dependency>
     </dependencies>
 
     <build>
@@ -29,5 +43,16 @@
             </plugin>
         </plugins>
     </build>
+
+    <repositories>
+        <repository>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+            <id>central</id>
+            <name>bintray</name>
+            <url>http://jcenter.bintray.com</url>
+        </repository>
+    </repositories>
 
 </project>
