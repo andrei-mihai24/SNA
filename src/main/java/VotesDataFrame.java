@@ -22,8 +22,7 @@ import java.util.stream.Collectors;
 
 public class VotesDataFrame {
     //private static final String PATH = "C:\\Users\\Andrei\\Desktop\\Data files 01.05.2019-02.05.2019 (40,8 MB)-20200112\\Votes_01052019_02052019.csv";
-    private static final String PATH = "C:\\Users\\Andrei\\Desktop\\Data files 01.05.2019-31.05.2019 (660,6 MB)-20200112\\Votes_01052019_15052019.csv";
-    private static final String PATH2 = "C:\\Users\\Andrei\\Desktop\\Data files 01.05.2019-31.05.2019 (660,6 MB)-20200112\\Votes_16052019_31052019.csv";
+    private static final String PATH = "C:\\Users\\Andrei\\Desktop\\Data files 01.05.2019-31.05.2019 (660,6 MB)-20200112\\";
 
     public static final IntColumnId ID_COMMUNITY_IDENTITY = IntColumnId.of("ID_CommunityIdentity");
     public static final IntColumnId ID_POSTING = IntColumnId.of("ID_Posting");
@@ -39,7 +38,7 @@ public class VotesDataFrame {
     private DataFrame dataFrame;
 
     private VotesDataFrame() throws IOException, CsvValidationException {
-        CSVReaderBuilder csvReaderBuilder = new CSVReaderHeaderAwareBuilder(new FileReader(PATH))
+        CSVReaderBuilder csvReaderBuilder = new CSVReaderHeaderAwareBuilder(new FileReader(PATH + "Votes_01052019_15052019.csv"))
                 .withCSVParser(new CSVParserBuilder().withSeparator(';').build());
         CSVReaderHeaderAware csvReaderHeaderAware = ((CSVReaderHeaderAwareBuilder) csvReaderBuilder).build();
 
@@ -49,7 +48,7 @@ public class VotesDataFrame {
             nextRow.forEach((k, v) -> data.computeIfAbsent(sanitize(k), i -> new ArrayList<>()).add(v));
         }
 
-        csvReaderBuilder = new CSVReaderHeaderAwareBuilder(new FileReader(PATH2))
+        csvReaderBuilder = new CSVReaderHeaderAwareBuilder(new FileReader(PATH + "Votes_16052019_31052019.csv"))
                 .withCSVParser(new CSVParserBuilder().withSeparator(';').build());
         csvReaderHeaderAware = ((CSVReaderHeaderAwareBuilder) csvReaderBuilder).build();
         while ((nextRow = csvReaderHeaderAware.readMap()) != null) {

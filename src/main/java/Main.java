@@ -13,6 +13,7 @@ public class Main {
         PrintStream out = new PrintStream(new FileOutputStream("output.txt"));
         System.setOut(out);
 
+        //DataProcessor.getInstance().createCsv();
         DataProcessor.getInstance().run();
     }
 

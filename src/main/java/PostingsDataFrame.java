@@ -22,8 +22,7 @@ import java.util.stream.Collectors;
 
 public class PostingsDataFrame {
     //private static final String PATH = "C:\\Users\\Andrei\\Desktop\\Data files 01.05.2019-02.05.2019 (40,8 MB)-20200112\\Postings_01052019_02052019.csv";
-    private static final String PATH = "C:\\Users\\Andrei\\Desktop\\Data files 01.05.2019-31.05.2019 (660,6 MB)-20200112\\Postings_01052019_15052019.csv";
-    private static final String PATH2 = "C:\\Users\\Andrei\\Desktop\\Data files 01.05.2019-31.05.2019 (660,6 MB)-20200112\\Postings_16052019_31052019.csv";
+    private static final String PATH = "C:\\Users\\Andrei\\Desktop\\Data files 01.05.2019-31.05.2019 (660,6 MB)-20200112\\";
 
     public static final IntColumnId ID_POSTING = IntColumnId.of("ID_Posting");
     public static final StringColumnId ID_POSTING_PARENT = StringColumnId.of("ID_Posting_Parent");
@@ -45,7 +44,7 @@ public class PostingsDataFrame {
     private DataFrame dataFrame;
 
     private PostingsDataFrame() throws IOException, CsvValidationException {
-        CSVReaderBuilder csvReaderBuilder = new CSVReaderHeaderAwareBuilder(new FileReader(PATH))
+        CSVReaderBuilder csvReaderBuilder = new CSVReaderHeaderAwareBuilder(new FileReader(PATH + "Postings_01052019_15052019.csv"))
                 .withCSVParser(new CSVParserBuilder().withSeparator(';').build());
         CSVReaderHeaderAware csvReaderHeaderAware = ((CSVReaderHeaderAwareBuilder) csvReaderBuilder).build();
 
@@ -55,7 +54,7 @@ public class PostingsDataFrame {
             nextRow.forEach((k, v) -> data.computeIfAbsent(sanitize(k), i -> new ArrayList<>()).add(v));
         }
 
-        csvReaderBuilder = new CSVReaderHeaderAwareBuilder(new FileReader(PATH2))
+        csvReaderBuilder = new CSVReaderHeaderAwareBuilder(new FileReader(PATH + "Postings_16052019_31052019.csv"))
                 .withCSVParser(new CSVParserBuilder().withSeparator(';').build());
         csvReaderHeaderAware = ((CSVReaderHeaderAwareBuilder) csvReaderBuilder).build();
         while ((nextRow = csvReaderHeaderAware.readMap()) != null) {
